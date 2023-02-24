@@ -54,7 +54,7 @@ To perform a backup, a custom resource of type Backup must be created.
 1. Click **Create**.
 1. Create the Backup with the form, or with the YAML editor.
    - For configuring the Backup details using the form, click **Create** and refer to the [configuration reference](../../../reference-guides/backup-restore-configuration/backup-configuration.md) and to the [examples.](../../../reference-guides/backup-restore-configuration/examples.md#backup)
-   - For using the YAML editor, we can click **Create > Create from YAML**. Enter the Backup YAML referncing the `rancher-back` chart. This example Backup custom resource would create encrypted recurring backups in S3. The app uses the `credentialSecretNamespace` value to determine where to look for the S3 backup secret:
+   - For using the YAML editor, we can click **Create > Create from YAML**. Enter the Backup YAML referncing the `rancher-backup` chart. This example Backup custom resource would create encrypted recurring backups in S3. The app uses the `credentialSecretNamespace` value to determine where to look for the S3 backup secret:
 
       ```yaml
       apiVersion: resources.cattle.io/v1
