@@ -26,7 +26,7 @@ Refer [here](migrate-rancher-to-new-cluster.md#2-restore-from-backup-using-a-res
 
 ### 1. Install the Rancher Backups app
 
-The backup storage location is an operator-level setting, so it needs to be configured when the Rancher Backups app is installed or upgraded.
+The backup storage location is an operator-level setting, so it needs to be configured when the **Rancher Backups** app is installed or upgraded.
 
 Backups are created as .tar.gz files. These files can be pushed to S3 or Minio, or they can be stored in a persistent volume.
 
@@ -40,7 +40,7 @@ Backups are created as .tar.gz files. These files can be pushed to S3 or Minio, 
 
 :::note
 
-There is a known issue in Fleet that occurs after performing a restoration using the backup-restore-operator: Secrets used for clientSecretName and helmSecretName are not included in Fleet gitrepos. Refer [here](../deploy-apps-across-clusters/fleet.md#troubleshooting) for a workaround.
+There is a known issue in Fleet that occurs after performing a restoration using the `backup-restore-operator`: Secrets used for clientSecretName and helmSecretName are not included in Fleet gitrepos. Refer [here](../deploy-apps-across-clusters/fleet.md#troubleshooting) for a workaround.
 
 :::
 
@@ -54,7 +54,7 @@ To perform a backup, a custom resource of type Backup must be created.
 1. Click **Create**.
 1. Create the Backup with the form, or with the YAML editor.
    - For configuring the Backup details using the form, click **Create** and refer to the [configuration reference](../../../reference-guides/backup-restore-configuration/backup-configuration.md) and to the [examples.](../../../reference-guides/backup-restore-configuration/examples.md#backup)
-   - For using the YAML editor, we can click **Create > Create from YAML**. Enter the Backup YAML. This example Backup custom resource would create encrypted recurring backups in S3. The app uses the `credentialSecretNamespace` value to determine where to look for the S3 backup secret:
+   - For using the YAML editor, we can click **Create > Create from YAML**. Enter the Backup YAML referncing the `rancher-back` chart. This example Backup custom resource would create encrypted recurring backups in S3. The app uses the `credentialSecretNamespace` value to determine where to look for the S3 backup secret:
 
       ```yaml
       apiVersion: resources.cattle.io/v1
