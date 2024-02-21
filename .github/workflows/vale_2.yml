@@ -17,11 +17,12 @@ jobs:
             files: |
                docs/**
             separator: ","
-      - name: List all changed files markdown files
+      - name: Check if no markdown files changed
         if: steps.changed-files-specific.outputs.any_changed == 'false'
+        env:
+            ALL_CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.no_changed_files }}
         run: |
-         gh run cancel ${{ github.run_id }}
-         gh run watch ${{ github.run_id }}
+            echo ${NO_CHANGED_FILES}
       - name: List all changed files markdown files
         if: steps.changed-markdown-files.outputs.any_changed == 'true'
         env:
