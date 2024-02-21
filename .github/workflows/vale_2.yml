@@ -21,7 +21,7 @@ jobs:
         env:
             ALL_CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
         run: |
-            echo "$file was changed"
+            echo ${ALL_CHANGED_FILES}
             for file in ${ALL_CHANGED_FILES}; do
               echo "$file was changed"
               echo "ALL_CHANGED_FILES=$ALL_CHANGED_FILES" >> $GITHUB_ENV
