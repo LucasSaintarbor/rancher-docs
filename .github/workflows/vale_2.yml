@@ -18,6 +18,11 @@ jobs:
                docs/**
             separator: ","
       - name: List all changed files markdown files
+        if: steps.changed-files-specific.outputs.any_changed == 'false'
+        run: |
+         gh run cancel ${{ github.run_id }}
+         gh run watch ${{ github.run_id }}
+      - name: List all changed files markdown files
         if: steps.changed-markdown-files.outputs.any_changed == 'true'
         env:
             ALL_CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
