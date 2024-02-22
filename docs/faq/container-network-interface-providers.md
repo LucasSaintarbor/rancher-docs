@@ -3,6 +3,8 @@ title: Container Network Interface (CNI) Providers
 description: Learn about Container Network Interface (CNI), the CNI providers Rancher provides, the features they offer, and how to choose a provider for you
 ---
 
+Test edit
+
 <head>
   <link rel="canonical" href="https://ranchermanager.docs.rancher.com/faq/container-network-interface-providers"/>
 </head>
