@@ -6,6 +6,8 @@ title: Installing and Configuring kubectl
   <link rel="canonical" href="https://ranchermanager.docs.rancher.com/faq/install-and-configure-kubectl"/>
 </head>
 
+Test edit
+
 `kubectl` is a CLI utility for running commands against Kubernetes clusters. It's required for many maintenance and administrative tasks in Rancher 2.x.
 
 ### Installation
