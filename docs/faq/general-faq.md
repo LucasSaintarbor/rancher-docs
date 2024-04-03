@@ -6,6 +6,8 @@ title: General FAQ
   <link rel="canonical" href="https://ranchermanager.docs.rancher.com/faq/general-faq"/>
 </head>
 
+Test edit
+
 This FAQ is a work in progress designed to answer the questions most frequently asked about Rancher v2.x.
 
 See the [Technical FAQ](technical-items.md) for frequently asked technical questions.
