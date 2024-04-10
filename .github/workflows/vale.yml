@@ -31,6 +31,7 @@ jobs:
             echo ${ALL_CHANGED_FILES}
             for file in ${ALL_CHANGED_FILES}; do
               echo "ALL_CHANGED_FILES=$ALL_CHANGED_FILES" >> $GITHUB_ENV
+            done
       - uses: errata-ai/vale-action@reviewdog
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
