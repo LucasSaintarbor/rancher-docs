@@ -15,8 +15,11 @@ jobs:
         uses: tj-actions/changed-files@v42
         with:
             # Avoid using single or double quotes for multiline patterns
-            files: |
-               docs/**.{md,mdx}, versioned_docs/**.{md,mdx}
+            files_yaml: |
+               docs:
+                 - docs/**
+               versioned_docs: 
+                 - versioned_docs/**
             separator: ","
         env:
             ALL_CHANGED_FILES: ${{ 0 }}
