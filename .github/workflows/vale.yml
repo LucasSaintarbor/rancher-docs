@@ -17,6 +17,7 @@ jobs:
             # Avoid using single or double quotes for multiline patterns
             files: |
                docs/**
+               versioned_docs/**
             separator: ","
         env:
             ALL_CHANGED_FILES: ${{ 0 }}
