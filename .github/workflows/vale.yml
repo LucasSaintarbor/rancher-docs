@@ -17,6 +17,13 @@ jobs:
             files: |
                **.md
             separator: ","
+      - name: No files changed?
+        if: steps.changed-markdown-files.outputs.any_changed == 'false'
+        env:
+            ALL_CHANGED_FILES: ${{ 0 }}
+        run: |
+              echo "No files changed"
+              echo "ALL_CHANGED_FILES=$ALL_CHANGED_FILES" >> $GITHUB_ENV
       - name: List all changed files markdown files
         if: steps.changed-markdown-files.outputs.any_changed == 'true'
         env:
