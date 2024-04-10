@@ -16,11 +16,12 @@ jobs:
         with:
             # Avoid using single or double quotes for multiline patterns
             files: |
-               **.md
+               docs/**.md
             separator: ","
         env:
             ALL_CHANGED_FILES: ${{ 0 }}
       - name: No files changed?
+        if: steps.changed-markdown-files.outputs.any_changed == 'false'
         run: |
               echo "No files changed"
               echo "ALL_CHANGED_FILES=$ALL_CHANGED_FILES" >> $GITHUB_ENV
