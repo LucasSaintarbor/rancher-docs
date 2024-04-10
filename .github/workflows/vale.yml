@@ -17,8 +17,10 @@ jobs:
             # Avoid using single or double quotes for multiline patterns
             files_yaml: |
                docs:
+                - '**.md'
                 - docs/**
                versioned_docs: 
+                - '**.md'
                 - versioned_docs/**
             separator: ","
         env:
