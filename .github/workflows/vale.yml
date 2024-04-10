@@ -29,7 +29,8 @@ jobs:
             ALL_CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
         run: |
             echo ${ALL_CHANGED_FILES}
-            echo "ALL_CHANGED_FILES=$ALL_CHANGED_FILES" >> $GITHUB_ENV
+            for file in ${ALL_CHANGED_FILES}; do
+              echo "ALL_CHANGED_FILES=$ALL_CHANGED_FILES" >> $GITHUB_ENV
       - uses: errata-ai/vale-action@reviewdog
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
