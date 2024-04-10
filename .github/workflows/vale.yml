@@ -22,6 +22,9 @@ jobs:
         env:
             ALL_CHANGED_FILES: ${{ 0 }}
         run: |
+            for file in ${ALL_CHANGED_FILES}; do
+              echo "No filed changed"
+              echo "ALL_CHANGED_FILES=$ALL_CHANGED_FILES" >> $GITHUB_ENV
             done
       - name: List all changed files markdown files
         if: steps.changed-markdown-files.outputs.any_changed == 'true'
