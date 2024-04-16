@@ -11,6 +11,7 @@ jobs:
           # ref: '4b825dc642cb6eb9a060e54bf8d69288fbee4904'
           # ref: ${{ github.event.pull_request.head.sha }} 
           ref: ${{ github.head_ref }} 
+          ref: 
           fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
           submodules: true
       # - run: git checkout HEAD^
@@ -37,10 +38,14 @@ jobs:
         env:
             ALL_CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
             ALL_CHANGED_FILES_COUNT: ${{ steps.changed-markdown-files.outputs.all_changed_files_count }}
+            SHA: ${{ github.head_ref }}
+            HEAD: ${{ github.base_ref }}
         run: |
             echo ${ALL_CHANGED_FILES_COUNT}
             echo ${ALL_CHANGED_FILES}
             echo "ALL_CHANGED_FILES=$ALL_CHANGED_FILES" >> $GITHUB_ENV
+            echo ${SHA}
+            echo ${HEAD}
       - uses: errata-ai/vale-action@v2.1.0
         if: steps.changed-markdown-files.outputs.any_changed == 'true'
         env:
