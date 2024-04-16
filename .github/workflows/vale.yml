@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-          # fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
           submodules: true
       - name: Get all changed markdown files
         id: changed-markdown-files
