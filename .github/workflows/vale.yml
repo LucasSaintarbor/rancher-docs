@@ -8,12 +8,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # ref: '4b825dc642cb6eb9a060e54bf8d69288fbee4904'
-          # ref: ${{ github.event.pull_request.head.sha }} 
+          ref: ${{ github.event.pull_request.head.sha }} 
           # ref: ${{ github.head_ref }}
           fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
           submodules: true
       # - run: git merge-base main ${{ github.head_ref }}
+      - name: Get the merge-base for this PR
+        id: get_mb
+        run: |
+          git checkout main
+          mb=$(git merge-base main ${{ github.event.pull_request.head.sha }})
+          echo "mbase=$mb" >> $GITHUB_ENV
       - name: Get all changed markdown files
         id: changed-markdown-files
         uses: tj-actions/changed-files@v42
@@ -27,8 +32,6 @@ jobs:
             # since_last_remote_commit: 'true'
         env:
             ALL_CHANGED_FILES: ${{ 0 }}
-      - name: Get base head
-        run: git merge-base main ${{ github.head_ref }}
       - name: No files changed?
         if: steps.changed-markdown-files.outputs.any_changed == 'false'
         run: |
