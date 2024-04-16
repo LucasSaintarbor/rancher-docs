@@ -6,7 +6,7 @@ title: Contributing to Rancher
   <link rel="canonical" href="https://ranchermanager.docs.rancher.com/contribute-to-rancher"/>
 </head>
 
-edit 3
+edit 4
 
 Learn about the repositories used for Rancher and Rancher docs, how to build Rancher repositories, and what information to include when you file an issue.
 
