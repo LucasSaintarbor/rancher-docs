@@ -10,6 +10,7 @@ jobs:
         with:
           # ref: '4b825dc642cb6eb9a060e54bf8d69288fbee4904'
           # ref: ${{ github.event.pull_request.head.sha }} 
+          ref: ${{ github.base_ref }} 
           fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
           submodules: true
       # - run: git checkout HEAD^
@@ -23,7 +24,7 @@ jobs:
                versioned_docs/**
             separator: ","
             # sha: 4b825dc642cb6eb9a060e54bf8d69288fbee4904
-            since_last_remote_commit: 'true'
+            # since_last_remote_commit: 'true'
         env:
             ALL_CHANGED_FILES: ${{ 0 }}
       - name: No files changed?
