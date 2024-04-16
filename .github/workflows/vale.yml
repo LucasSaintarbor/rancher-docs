@@ -21,7 +21,7 @@ jobs:
                docs/**
                versioned_docs/**
             separator: ","
-            sha: '${{ github.event.pull_request.head.sha }}'
+            sha: ${{ github.event.pull_request.head.sha }}
             # since_last_remote_commit: 'true'
         env:
             ALL_CHANGED_FILES: ${{ 0 }}
