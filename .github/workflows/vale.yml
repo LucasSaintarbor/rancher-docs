@@ -23,6 +23,7 @@ jobs:
                docs/**
                versioned_docs/**
             separator: ","
+            run: git merge-base main update-vale-test-edit
             base_sha: 7ef80ffcca8ce93f1f65e5b94943f24395ead196
             # since_last_remote_commit: 'true'
         env:
