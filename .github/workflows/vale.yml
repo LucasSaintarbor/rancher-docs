@@ -8,9 +8,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 2  # OR "2" -> To retrieve the preceding commit.
           submodules: true
+      - run: git checkout HEAD^
       - name: Get all changed markdown files
         id: changed-markdown-files
         uses: tj-actions/changed-files@v42
