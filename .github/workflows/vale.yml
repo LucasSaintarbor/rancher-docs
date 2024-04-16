@@ -24,10 +24,11 @@ jobs:
                versioned_docs/**
             separator: ","
             base_sha: 7ef80ffcca8ce93f1f65e5b94943f24395ead196
-        run: git merge-base main update-vale-test-edit
             # since_last_remote_commit: 'true'
         env:
             ALL_CHANGED_FILES: ${{ 0 }}
+      - name: Get base head
+        run: git merge-base main update-vale-test-edit
       - name: No files changed?
         if: steps.changed-markdown-files.outputs.any_changed == 'false'
         run: |
