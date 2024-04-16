@@ -13,7 +13,7 @@ jobs:
           # ref: ${{ github.head_ref }}
           fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
           submodules: true
-      - run: git merge-base main update-vale-test-edit
+      - run: git merge-base main ${{ github.head_ref }}
       - name: Get all changed markdown files
         id: changed-markdown-files
         uses: tj-actions/changed-files@v42
