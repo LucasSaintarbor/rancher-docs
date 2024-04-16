@@ -14,6 +14,8 @@ jobs:
           submodules: true
       - run: |
           echo "test"
+          git status 
+          git merge-base main ${{ github.head_ref }}
       - name: Get the merge-base for this PR
         id: get_mb
         run: |
