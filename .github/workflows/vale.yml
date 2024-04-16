@@ -23,6 +23,8 @@ jobs:
           echo ${{ github.event.pull_request.head }} 
           echo ${{ github.event.pull_request.base }} 
           git merge-base remotes/origin/${{ github.head_ref }} remotes/origin/main
+          echo "MB=$(git merge-base remotes/origin/${{ github.head_ref }} remotes/origin/main)" >> $GITHUB_ENV
+          echo ${{env.MB}}
       - name: Get all changed markdown files
         id: changed-markdown-files
         uses: tj-actions/changed-files@v42
@@ -32,7 +34,7 @@ jobs:
                docs/**
                versioned_docs/**
             separator: ","
-            base_sha: 7ef80ffcca8ce93f1f65e5b94943f24395ead196
+            base_sha: ${{env.MB}}
             # since_last_remote_commit: 'true'
         env:
             ALL_CHANGED_FILES: ${{ 0 }}
