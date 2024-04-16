@@ -19,12 +19,6 @@ jobs:
           git branch -a
           echo "spam 2 "
           git merge-base remotes/origin/update-vale-test-edit remotes/origin/main
-      - name: Get the merge-base for this PR
-        id: get_mb
-        run: |
-          git checkout main
-          mb=$(git merge-base main ${{ github.head_ref }})
-          echo "mbase=$mb" >> $GITHUB_ENV
       - name: Get all changed markdown files
         id: changed-markdown-files
         uses: tj-actions/changed-files@v42
