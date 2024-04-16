@@ -22,7 +22,7 @@ jobs:
           echo ${{ github.head_ref }}
           echo ${{ github.event.pull_request.head }} 
           echo ${{ github.event.pull_request.base }} 
-          git merge-base remotes/origin/${{ github.base_ref }} remotes/origin/main
+          git merge-base remotes/origin/${{ github.head_ref }} remotes/origin/main
       - name: Get all changed markdown files
         id: changed-markdown-files
         uses: tj-actions/changed-files@v42
