@@ -16,7 +16,7 @@ jobs:
           echo "test"
           git status
           echo "spam 1"
-          git branch 
+          git branch -a
           echo "spam 2 "
           git merge-base ${{ github.base_ref }} ${{ github.event.pull_request.head.sha }}
       - name: Get the merge-base for this PR
