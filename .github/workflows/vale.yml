@@ -13,7 +13,7 @@ jobs:
           # ref: ${{ github.head_ref }}
           fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
           submodules: true
-      # - run: git checkout HEAD^
+      - run: git merge-base main update-vale-test-edit
       - name: Get all changed markdown files
         id: changed-markdown-files
         uses: tj-actions/changed-files@v42
@@ -27,8 +27,8 @@ jobs:
             # since_last_remote_commit: 'true'
         env:
             ALL_CHANGED_FILES: ${{ 0 }}
-      - name: Get base head
-        run: git merge-base main update-vale-test-edit
+      #- name: Get base head
+      #  run: git merge-base main update-vale-test-edit
       - name: No files changed?
         if: steps.changed-markdown-files.outputs.any_changed == 'false'
         run: |
