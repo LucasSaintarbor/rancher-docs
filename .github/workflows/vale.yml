@@ -18,7 +18,7 @@ jobs:
           echo "spam 1"
           git branch -a
           echo "spam 2 "
-          git merge-base ${{ github.base_ref }} ${{ github.event.pull_request.head.sha }}
+          git merge-base emotes/origin/update-vale-test-edit remotes/origin/main
       - name: Get the merge-base for this PR
         id: get_mb
         run: |
