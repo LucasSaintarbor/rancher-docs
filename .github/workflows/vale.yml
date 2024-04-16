@@ -12,7 +12,8 @@ jobs:
           # ref: ${{ github.head_ref }}
           fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
           submodules: true
-      # - run: git merge-base main ${{ github.head_ref }}
+        run: |
+          echo "test"
       - name: Get the merge-base for this PR
         id: get_mb
         run: |
