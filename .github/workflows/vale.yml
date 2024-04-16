@@ -18,7 +18,7 @@ jobs:
           echo "spam 1"
           git branch -a
           echo "spam 2 "
-          git merge-base remotes/origin/update-vale-test-edit remotes/origin/main
+          git merge-base remotes/origin/${{ github.base_ref }} remotes/origin/main
       - name: Get all changed markdown files
         id: changed-markdown-files
         uses: tj-actions/changed-files@v42
