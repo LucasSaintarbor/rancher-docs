@@ -6,6 +6,8 @@ title: General Troubleshooting
   <link rel="canonical" href="https://ranchermanager.docs.rancher.com/troubleshooting/general-troubleshooting"/>
 </head>
 
+Edit
+
 This section contains information to help you troubleshoot issues when using Rancher.
 
 - [Kubernetes components](kubernetes-components/kubernetes-components.md)
