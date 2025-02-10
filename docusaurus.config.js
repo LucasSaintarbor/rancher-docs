@@ -4,6 +4,19 @@ const tailwindPlugin = require('./plugins/tailwind-plugin.cjs');
 
 module.exports = {
   title: 'Rancher',
+  customFields: {
+    versionBanners: {
+      '2.5': {
+        enabled: true,
+        message: '⚠️ Version 2.5 documentation will be  archived 2/28/25! You will still be able to view the documentation source directly on our GitHub repository.',
+        url: `https://github.com/rancher/rancher-docs/tree/main/archived_docs/en/version-2.0-2.4`,
+        linkText: ' (2.5 Documentation Github Repo)',
+        backgroundColor: '#ff5733',
+        textColor: '#ffffff',
+        //dismissible: true,
+      },
+    },
+  },
   tagline: '',
   url: 'https://ranchermanager.docs.rancher.com/',
   baseUrl: '/',

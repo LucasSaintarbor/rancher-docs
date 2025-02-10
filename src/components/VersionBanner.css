@@ -1,0 +1,18 @@
+.custom-banner {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    margin-left: 0px;
+    cursor: pointer;
+  }
+  
