@@ -16,11 +16,15 @@ For configuration details, refer to the [official Kubernetes documentation](http
 <Tabs groupId="k8s-distro">
 <TabItem value="RKE2" default>
 
-### Method 1 (Recommended): Set `audit-policy-file` in `machineGlobalConfig`
+### Method 1 (Recommended): Set `audit-policy-file` in `machineGlobalConfig` or `machineSelectorConfig`
 
-You can set `audit-policy-file` in the configuration file. Rancher delivers the file to the path `/var/lib/rancher/rke2/etc/config-files/audit-policy-file` in control plane nodes, and sets the proper options in the RKE2 server.
+You can set `audit-policy-file` in the configuration file using either `machineGlobalConfig` or `machineSelectorConfig`.
 
-Example:
+When using `machineGlobalConfig`, Rancher delivers the file to the path `/var/lib/rancher/rke2/etc/config-files/audit-policy-file` on **all nodes** (both control plane and worker nodes), and sets the proper options in the RKE2 server. This may cause unwanted worker node reconciliation when the audit policy is modified.
+
+To avoid worker node reconciliation, use `machineSelectorConfig` with a label selector to target only control plane nodes. This ensures that the audit policy file is only delivered to control plane nodes.
+
+Example using `machineGlobalConfig`:
 ```yaml
 apiVersion: provisioning.cattle.io/v1
 kind: Cluster
@@ -36,6 +40,28 @@ spec:
               - group: ""
                 resources:
                   - pods
+```
+
+Example using `machineSelectorConfig` (recommended to avoid worker node reconciliation):
+```yaml
+apiVersion: provisioning.cattle.io/v1
+kind: Cluster
+spec:
+  rkeConfig:
+    machineSelectorConfig:
+      - config:
+          audit-policy-file: |
+            apiVersion: audit.k8s.io/v1
+            kind: Policy
+            rules:
+              - level: RequestResponse
+                resources:
+                  - group: ""
+                    resources:
+                      - pods
+        machineLabelSelector:
+          matchLabels:
+            rke.cattle.io/control-plane-role: 'true'
 ```
 
 ### Method 2: Use the Directives, `machineSelectorFiles` and `machineGlobalConfig`
