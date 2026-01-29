@@ -129,12 +129,6 @@ spec:
             rke.cattle.io/control-plane-role: 'true'
 ```
 
-:::tip
-
-You can also use the directive `machineSelectorConfig` with proper machineLabelSelectors to achieve the same effect.
-
-:::
-
 For more information about cluster configuration, refer to the [RKE2 cluster configuration reference](../../reference-guides/cluster-configuration/rancher-server-configuration/rke2-cluster-configuration.md) pages.
 
 </TabItem>
@@ -203,12 +197,6 @@ spec:
           matchLabels:
             rke.cattle.io/control-plane-role: 'true'
 ```
-
-:::tip
-
-You can also use the directive `machineSelectorConfig` with proper machineLabelSelectors to achieve the same effect.
-
-:::
 
 For more information about cluster configuration, refer to the [K3s cluster configuration reference](../../reference-guides/cluster-configuration/rancher-server-configuration/k3s-cluster-configuration.md) pages.
 
