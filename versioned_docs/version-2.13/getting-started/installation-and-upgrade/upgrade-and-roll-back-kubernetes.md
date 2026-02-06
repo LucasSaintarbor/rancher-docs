@@ -100,6 +100,13 @@ There is a [known issue](https://github.com/rancher/rancher/issues/25478) in whi
 
 :::
 
+:::note
+
+During an upgrade, nodes may be drained even when no user-visible YAML changes are present. This can occur if non-dynamic configuration files are updated or if a new `system-agent-installer` image is introduced.
+In such cases, Rancher generates a new upgrade plan, resulting in a new plan hash. When `Upgrade Strategy` is set to `Drain nodes`, this plan change can trigger node draining.
+
+:::
+
 ### Maintaining Availability for Applications During Upgrades
 
 In [this section of the RKE documentation,](https://rancher.com/docs/rke/latest/en/upgrades/maintaining-availability/) you'll learn the requirements to prevent downtime for your applications when upgrading the cluster.
