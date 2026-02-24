@@ -1,5 +1,5 @@
 ---
-title: Global Resources
+title: Global Resources1
 ---
 
 <head>
@@ -25,11 +25,6 @@ Please see the list below to determine what permissions you may need when creati
 | -------------------- | ------------------------------ | --------------------------------------------------------------------------- |
 | auditlog.cattle.io   | auditpolicies                  | Specification of log filers, redactions, verbosity                          |
 | catalog.cattle.io    | clusterrepos                   | Helm chart repository location and credentials                              |
-| ext.cattle.io        | groupmembershiprefreshrequests | Creation triggers refresh of group membership for specific or all users     |
-| ext.cattle.io        | kubeconfigs                    | Kubeconfig file for access to remote clusters                               |
-| ext.cattle.io        | passwordchangerequests         | Creation triggers update of the referenced User's password                  |
-| ext.cattle.io        | selfusers                      | Get delivers User making the request                                        |
-| ext.cattle.io        | tokens                         | Raw API key. See Kubeconfig for wrapped API keys                            |
 | management.cattle.io | authconfigs                    | Configuration of external auth service providers                            |
 | management.cattle.io | clusters                       | Remote cluster management                                                   |
 | management.cattle.io | features                       | Feature controlling rancher behaviour                                       |
