@@ -205,7 +205,7 @@ module.exports = {
               banner: "none",
             },
             2.9: {
-              label: "v2.9",
+              label: "v2.9" (Archived),
               path: "v2.9",
               banner: "none",
             },
