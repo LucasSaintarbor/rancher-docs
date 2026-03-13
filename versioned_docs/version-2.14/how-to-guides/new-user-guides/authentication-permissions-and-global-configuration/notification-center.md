@@ -3,7 +3,7 @@ title: Notifications
 ---
 
 <head>
-  <link rel="canonical" href="https://ranchermanager.docs.rancher.com/how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/notifications"/>
+  <link rel="canonical" href="https://ranchermanager.docs.rancher.com/how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/notifications-center"/>
 </head>
 
 The Rancher dashboard delivers dynamic notifications and system alerts to ensure that you stay informed about the latest updates, lifecycle events, and statuses relevant to your deployment.
