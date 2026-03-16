@@ -18,7 +18,7 @@ Dynamic content is delivered to users through three areas in the Rancher dashboa
 * **Home page section below the Links**: A dedicated area on the home page, located beneath the **Links** section, that displays relevant updates and resources.
 * **[Notification center](#what-is-the-notification-center)**: A centralized hub for all notifications, including system alerts, resources and announcements.
 
-To interact with these notifications, click **Learn More** or the listed resource. You can also dismiss the notification.
+To interact with these notifications, click **Learn More** on the listed resource. You can also dismiss the notification.
 
 ## What is the Notification Center?
 
