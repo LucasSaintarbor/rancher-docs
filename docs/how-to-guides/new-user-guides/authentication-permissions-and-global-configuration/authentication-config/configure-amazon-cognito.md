@@ -53,6 +53,10 @@ if the user has not yet logged in to Rancher. However, if the user has previousl
 | Client Secret             | The generated Secret of your Amazon Cognito App Client.                                                                                                                                                                                             |
 | Issuer                    | The Issuer URL of your Amazon Cognito App Client. It follows the format `https://cognito-idp.{region}.amazonaws.com/{userPoolId}`, and can be found in the App Client settings page. Rancher uses the Issuer URL to fetch all of the required URLs. |
 
+## OIDC Support for PKCE Extension
+
+<OIDCPKCESupport />
+
 ## Configuring OIDC Single Logout (SLO)
 
 <ConfigureSLOOidc />
