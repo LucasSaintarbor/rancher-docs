@@ -861,7 +861,6 @@ const sidebars = {
                 id: "reference-guides/cluster-configuration/rancher-server-configuration/rancher-server-configuration",
               },
               items: [
-                "reference-guides/cluster-configuration/rancher-server-configuration/rke1-cluster-configuration",
                 "reference-guides/cluster-configuration/rancher-server-configuration/rke2-cluster-configuration",
                 "reference-guides/cluster-configuration/rancher-server-configuration/k3s-cluster-configuration",
                 "reference-guides/cluster-configuration/rancher-server-configuration/eks-cluster-configuration",
