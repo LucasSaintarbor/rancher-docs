@@ -52,6 +52,69 @@ One of the following is required to enable private access:
 
 For more information about public and private access to the cluster endpoint, refer to the [Amazon EKS documentation.](https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
 
+### IPv6 / Dual-stack Networking
+
+Rancher supports provisioning and managing Amazon EKS clusters with IPv6 network routing. When IPv6 is enabled, Kubernetes pods and services are assigned IPv6 addresses. However, the underlying EC2 worker nodes operate in a **dual-stack mode** (receiving both IPv4 and IPv6 addresses). This dual-stack architecture ensures that the nodes can still communicate with the AWS API and the Kubernetes control plane over IPv4, while your application workloads communicate over IPv6.
+
+To provision a dual-stack cluster from the Rancher UI:
+1. During cluster creation, expand the **Networking** section.
+2. Under **IP Family**, select the **IPv6** radio button. 
+   > **Note:** Changing the IP Family will clear any current subnet selections you have made in the form.
+3. Under **VPCs and Subnets**, choose either to **Create a new vpc and subnet automatically** or **Select from existing subnets**.
+   > **Warning for Custom VPCs:** If you choose to select existing subnets, you **must** select Dual-Stack subnets. The selected subnets must have both an IPv4 CIDR block and an IPv6 CIDR block. IPv6-only subnets are not supported.
+4. Complete the remainder of the cluster configuration (Node Groups, etc.).
+5. Click **Create**.
+
+> **Important:** The IP Family setting is **immutable**. Once an EKS cluster is created, you cannot convert an IPv4 cluster to IPv6, nor can you convert an IPv6 cluster to IPv4.
+
+### Importing Existing IPv6 Clusters
+
+Rancher fully supports registering (importing) existing Amazon EKS clusters that were configured with IPv6 networking outside of Rancher (e.g., via Terraform or the AWS Console).
+
+When you register an existing EKS cluster:
+1. Follow the standard cluster registration process (**Cluster Management > Add Cluster > Generic**).
+2. Rancher will query the AWS EKS API to read the cluster's upstream state.
+3. Rancher automatically detects if the cluster was provisioned with IPv6.
+
+When configuring an IPv6 cluster, several automated behaviors and strict requirements apply:
+* **Service CIDR:** AWS automatically assigns the Service CIDR from a fixed IPv6 range (`fd00::/108`). You cannot customize the Service CIDR for an IPv6 cluster.
+* **OIDC Provider (IRSA) Requirement:** In an IPv6 cluster, the Amazon VPC CNI plugin strictly requires IAM permissions to assign IPv6 prefixes to Elastic Network Interfaces (ENIs). This authentication is handled via IAM Roles for Service Accounts (IRSA). Therefore, **an IAM OIDC provider is mandatory and is automatically enabled by Rancher** when provisioning an IPv6 cluster. Without it, pods will fail to acquire IP addresses.
+
+
+### EKSClusterConfig Reference Example (IPv6)
+
+If you are programmatically deploying EKS clusters using the `eksclusterconfigs.eks.cattle.io` Custom Resource, you can enable IPv6 by setting the `ipFamily` field to `ipv6`. 
+
+Below is an example of a minimal `EKSClusterConfig` configured for IPv6. Notice that the `ipFamily` is set, and standard IPv4 fields like `serviceCidr` are omitted because AWS manages them automatically in IPv6 mode.
+
+```yaml
+apiVersion: eks.cattle.io/v1
+kind: EKSClusterConfig
+metadata:
+  name: my-ipv6-cluster
+  namespace: cluster-fleet-default
+spec:
+  amazonCredentialSecret: cattle-global-data/my-aws-credentials
+  displayName: my-ipv6-cluster
+  region: us-west-2
+  imported: false
+  kubernetesVersion: "1.33"
+  ipFamily: "ipv6" # Enables Dual-Stack IPv6 networking. Triggers automatic OIDC creation.
+  nodeGroups:
+    - nodegroupName: initial-nodegroup
+      desiredSize: 2
+      maxSize: 3
+      minSize: 1
+      instanceType: t3.medium
+      diskSize: 20
+      requestSpotInstances: false
+      version: "1.33"
+  privateAccess: false
+  publicAccess: true
+  secretsEncryption: false
+  ```
+
+
 ### Subnet
 
 | Option | Description |
@@ -60,6 +123,8 @@ For more information about public and private access to the cluster endpoint, re
 | Custom: Choose from your existing VPC and Subnets | While provisioning your cluster, Rancher configures your Control Plane and nodes to use a VPC and Subnet that you've already [created in AWS](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html).  |
 
  For more information, refer to the AWS documentation for [Cluster VPC Considerations](https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html). Follow one of the sets of instructions below based on your selection from the previous step.
+
+> **Warning for Custom IPv6 VPCs:** If you have selected `IPv6` as your IP Family and are bringing a custom VPC, you **must** select Dual-Stack subnets. The selected subnets must have **both an IPv4 CIDR block and an IPv6 CIDR block**. "IPv6-only" subnets are not supported by EKS; EC2 worker nodes still require an IPv4 address to join the cluster and communicate with AWS services.
 
 - [What Is Amazon VPC?](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html)
 - [VPCs and Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html)

@@ -63,7 +63,7 @@ You can access your cluster after its state is updated to **Active**.
 **Active** clusters are assigned two Projects:
 
 - `Default`, containing the `default` namespace
-- `System`, containing the `cattle-system`, `ingress-nginx`, `kube-public`, and `kube-system` namespaces
+- `System`, containing the `cattle-system`, `traefik`, `kube-public`, and `kube-system` namespaces
 
 ## EKS Cluster Configuration Reference
 
@@ -299,6 +299,41 @@ The following are the required permissions for installing the Amazon EBS CSI Dri
         "eks:UpdateAddon",
         "iam:CreateOpenIDConnectProvider",
         "iam:ListOpenIDConnectProviders",
+        "sts:AssumeRoleWithWebIdentity"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+### IPv6 Dual-Stack Networking Permissions
+
+The following are the additional permissions required for provisioning an **IPv6** EKS cluster from Rancher.
+
+> **Note:** These permissions are only necessary when Rancher is **creating** a new IPv6 cluster. During new cluster creation, Rancher needs these permissions to generate the dual-stack VPC, create the IAM OIDC provider, and assign an inline policy (`RancherManaged_AllowIPv6ForCNI`) to the Node Instance Role. 
+> 
+> If you are registering (importing) an existing EKS cluster that already has IPv6 configured, these additional permissions are **not required**.
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ec2:AssignIpv6Addresses",
+        "ec2:UnassignIpv6Addresses",
+        "ec2:AssignPrivateIpAddresses",
+        "ec2:UnassignPrivateIpAddresses",
+        "ec2:AssociateVpcCidrBlock",
+        "ec2:DisassociateVpcCidrBlock",
+        "iam:PutRolePolicy",
+        "iam:CreateOpenIDConnectProvider",
+        "iam:ListOpenIDConnectProviders",
+        "eks:AssociateIdentityProviderConfig",
+        "eks:DescribeIdentityProviderConfig",
+        "eks:ListIdentityProviderConfigs",
         "sts:AssumeRoleWithWebIdentity"
       ],
       "Resource": "*"
