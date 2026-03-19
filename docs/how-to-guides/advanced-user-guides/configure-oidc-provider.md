@@ -6,8 +6,9 @@ title: Configure Rancher as an OIDC provider
   <link rel="canonical" href="https://ranchermanager.docs.rancher.com/how-to-guides/advanced-user-guides/configure-oidc-provider"/>
 </head>
 
-Rancher can function as a standard OpenID Connect (OIDC) provider, allowing external applications to use Rancher for authentication.
-This can be used for enabling single sign-on (SSO) across Rancher Prime components. For example, see the [documentation](https://documentation.suse.com/cloudnative/suse-observability/latest/en/setup/security/authentication/oidc.html) for configuring the OIDC provider for SUSE Observability.
+Rancher can act as an OpenID Connect (OIDC) Identity Provider (IdP) for other applications. This allows you to use Rancher's centralized authentication and role-based access control (RBAC) to manage access to external, third-party applications. This can be used for enabling single sign-on (SSO) across Rancher components. For example, see the [documentation](https://documentation.suse.com/cloudnative/suse-observability/latest/en/setup/security/authentication/oidc.html) for configuring the OIDC provider for SUSE Observability.
+
+The Rancher OIDC Provider issues access tokens for OAuth and OIDC that can be used as standard Bearer tokens (per RFC6750) to authenticate with Rancher. Previously, access tokens issued by the Rancher OIDC Server could not be used for Rancher authentication.
 
 The OIDC provider can be enabled with the `oidc-provider` feature flag. When this flag is on the following endpoints are available:
 
@@ -21,27 +22,51 @@ The OIDC provider can be enabled with the `oidc-provider` feature flag. When thi
 
 The OIDC provider supports the OIDC Authentication Code Flow with PKCE.
 
-## Configure OIDCClient
+## Configuring an OIDC Client
 
-An `OIDCClient` represents an external application that will be authenticating against Rancher.
+An `OIDCClient` represents an external application that will be authenticating against Rancher. To register a client application, you must create an `OIDCClient` custom resource.
 
-### Programmatically
+### Configuration Fields
 
-Create an `OIDCClient`:
+When defining your `OIDCClient` manifest, you must include specific fields to pass CRD validation:
+
+- `spec.tokenExpirationSeconds`: This field is strictly required and will cause a validation error if omitted. It defines the lifespan of the access token.
+- `spec.refreshTokenExpirationSeconds`: This field is also strictly required and will cause a validation error if omitted. It defines the lifespan of the refresh token.
+- `scopes` (Optional): This field allows you to restrict the scopes that a client can request. If not explicitly configured, the allowed scopes will default to `openid`, `profile`, and `offline_access`.
+
+### Example OIDC Client Manifest
+
+Below is an example of an `OIDCClient` configuration:
+
+:::note
+You must include the expiration fields to successfully apply the resource.
+:::
 
 ```yaml
 apiVersion: management.cattle.io/v3
 kind: OIDCClient
 metadata:
-  name: oidc-client-test
+  name: example-client
 spec:
-  tokenExpirationSeconds: 600 # expiration of the id_token and access_token
-  refreshTokenExpirationSeconds: 3600 # expiration of the refresh_token
-  redirectURIs:
-    - "https://myredirecturl.com" # replace with your redirect url
+  description: "Example OIDC Client"
+  redirectUris:
+    - "https://example-app.com/callback"
+  tokenExpirationSeconds: 3600
+  refreshTokenExpirationSeconds: 86400
+  # scopes:
+  #   - openid
+  #   - profile
+  #   - offline_access
+
 ```
-Rancher automatically generates a client ID and client secret for each `OIDCClient`.
-Once the resource is created, Rancher populates the status field with the client id:
+
+Save this configuration to a file (e.g., `oidcclient.yaml`) and apply it to your Rancher local cluster:
+
+```
+kubectl apply -f oidcclient.yaml
+```
+
+Rancher automatically generates a client ID and client secret for each `OIDCClient`. Once the resource is created, Rancher populates the status field with the client id:
 
 ```yaml
 apiVersion: management.cattle.io/v3
@@ -53,6 +78,10 @@ spec:
   refreshTokenExpirationSeconds: 3600 # expiration of the refresh_token
   redirectURIs:
     - "https://myredirecturl.com" # replace with your redirect url
+  scopes: # Optional: Restricts the scopes the client can request. Defaults to openid, profile, and offline_access if omitted.
+    - openid
+    - profile
+    - offline_access
 status:
   clientID: client-xxx
   clientSecrets:
@@ -61,8 +90,7 @@ status:
       lastFiveCharacters: xxx
 ```
 
-Rancher automatically generates a Kubernetes `Secret` in the `cattle-oidc-client-secrets` namespace for each `OIDCClient` resource. The Secret's name matches the `OIDCClient` client ID.
-Initially, the `Secret` contains a single client secret.
+Rancher automatically generates a Kubernetes `Secret` in the `cattle-oidc-client-secrets` namespace for each `OIDCClient` resource. The Secret's name matches the `OIDCClient` client ID. Initially, the `Secret` contains a single client secret.
 
 To retrieve the client secret:
 
