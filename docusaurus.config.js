@@ -197,17 +197,15 @@ module.exports = {
             "2.12": {
               label: "v2.12",
               path: "v2.12",
-              banner: "none"
             },
             2.11: {
               label: "v2.11",
-              path: "v2.11",
-              banner: "none",
+              path: "v2.11"
             },
             "2.10": {
               label: "v2.10",
               path: "v2.10",
-              banner: "none",
+              className: 'toArchive'
             },
             2.9: {
               label: "v2.9 (Archived)",
