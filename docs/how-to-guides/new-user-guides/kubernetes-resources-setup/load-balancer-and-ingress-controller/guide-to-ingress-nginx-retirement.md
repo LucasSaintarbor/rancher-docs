@@ -12,7 +12,7 @@ To support users during this transition, Rancher provides clear migration paths 
 
 ## Support and timelines
 
-Rancher and RKE2 lifecycles align with the upstream retirement schedule.
+Rancher and RKE2 life cycles align with the upstream retirement schedule.
 
 :::warning
 After March 2026, upstream Ingress NGINX images will no longer receive updates. Any images built with patches after this date are restricted to commercial customers. Users must migrate to Traefik or another supported Ingress controller before this deadline to ensure continued security and compatibility.
@@ -41,7 +41,7 @@ When migrating a Rancher local cluster, the Rancher Ingress resource requires sp
 
 For RKE2 clusters provisioned and managed by Rancher, migration options are integrated directly into the user interface.
 
-Starting in Rancher v2.14.0 (and targeted for v2.13.5), the cluster configuration interface provides a Dual Mode migration option. This allows you to safely test and migrate traffic from Ingress NGINX to Traefik directly from the cluster management page. For more information, refer to the [documenation](<add-docs-urls>).
+The cluster configuration interface provides a Dual Mode migration option. This allows you to safely test and migrate traffic from Ingress NGINX to Traefik directly from the cluster management page. For more information, refer to the documentation.
 
 ### Rancher on managed Kubernetes (Amazon EKS, Azure AKS, Google GKE)
 
@@ -52,6 +52,6 @@ If you run Rancher on a managed Kubernetes service such as Amazon Elastic Kubern
 The retirement of Ingress NGINX impacts other related projects in the following ways:
 
 - Longhorn: There is no impact on the Longhorn backend. However, administrators must reconfigure their Ingress to upgrade the Longhorn UI. For more information, refer to [Create an Ingress with Basic Authentication (Traefik)](https://longhorn.io/docs/1.11.1/deploy/accessing-the-ui/longhorn-ingress-traefik/).
-- Fleet: Configuring a webhook service is affected. Refer to the [Fleet documentation](https://fleet.rancher.io/0.14/how-tos-for-users/webhook#_1_configure_the_webhook_service) for more informaiton.
+- Fleet: Configuring a webhook service is affected. Refer to the [Fleet documentation](https://fleet.rancher.io/0.14/how-tos-for-users/webhook#_1_configure_the_webhook_service) for more information.
 
 Ingress NGINX references in project documentation have been removed.
