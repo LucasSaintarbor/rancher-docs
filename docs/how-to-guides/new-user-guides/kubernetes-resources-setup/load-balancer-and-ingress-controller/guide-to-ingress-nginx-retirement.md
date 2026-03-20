@@ -6,21 +6,21 @@ title: Guide to Ingress NGINX Retirement
   <link rel="canonical" href="https://ranchermanager.docs.rancher.com/how-to-guides/new-user-guides/kubernetes-resources-setup/load-balancer-and-ingress-controller/guide-to-ingress-nginx-retirement"/>
 </head>
 
-The Kubernetes SIG Network and the Security Response Committee announced the retirement of the Ingress NGINX project. Upstream best-effort maintenance will continue until March 2026. After this date, there will be no further upstream releases, bug fixes, or security updates. For more information about this announcement, refer to [Ingress NGINX Retirement: What You Need to Know](https://kubernetes.io/blog/2025/11/11/ingress-nginx-retirement/).
+The Kubernetes SIG Network and the Security Response Committee announced the upcoming retirement of the Ingress NGINX project. Upstream best-effort maintenance will continue until March 2026. After this date, there will be no further upstream releases, bug fixes, or security updates.
 
-To support users during this transition, SUSE provides extended support timelines and clear migration paths to Traefik. This guide centralizes the information on how to proceed based on your specific deployment scenario.
+To support users during this transition, Rancher provides clear migration paths to Traefik. This guide centralizes the information on how to proceed based on your specific deployment scenario.
 
 ## Support and timelines
 
-For organizations that cannot migrate immediately, SUSE Rancher Prime LTS provides extended support for RKE2 v1.35.
+Rancher and RKE2 lifecycles align with the upstream retirement schedule.
 
 :::warning
-**Extended support for Ingress NGINX**: SUSE Rancher Prime LTS provides patches for critical and important Common Vulnerabilities and Exposures (CVEs) for the Ingress NGINX component through December 2027. No new features will be added during this period.
+After March 2026, upstream Ingress NGINX images will no longer receive updates. Any images built with patches after this date are restricted to commercial customers. Users must migrate to Traefik or another supported Ingress controller before this deadline to ensure continued security and compatibility.
 :::
 
 ## Migration paths by environment
 
-For organizations ready to move, SUSE offers a supported path to Traefik. Traefik includes a compatibility layer that can interpret many existing Ingress NGINX annotations. Identify your cluster environment below to find the correct migration approach.
+For organizations ready to move, there is a supported path to Traefik. Traefik includes a compatibility layer that can interpret many existing Ingress NGINX annotations. Identify your cluster environment below to find the correct migration approach.
 
 ### Standalone RKE2 clusters
 
@@ -28,10 +28,10 @@ For standalone or imported RKE2 clusters currently using Ingress NGINX, follow t
 
 The migration process involves a four-phase strategy:
 
-1. **Dual ingress controller setup:** Enable Traefik alongside Ingress NGINX using temporary, non-conflicting ports.
-2. **Parallel migration and validation:** Duplicate Ingress resources and test Traefik's handling of the existing annotations.
-3. **Final switchover:** Remove Ingress NGINX and configure Traefik to use the standard ports.
-4. **Cleanup:** Delete the legacy Ingress objects.
+1. *Dual ingress controller setup:* Enable Traefik alongside Ingress NGINX using temporary, non-conflicting ports.
+1. *Parallel migration and validation:* Duplicate Ingress resources and test Traefik's handling of the existing annotations.
+1. *Final switchover:* Remove Ingress NGINX and configure Traefik to use the standard ports.
+1. *Cleanup:* Delete the legacy Ingress objects.
 
 ### Rancher server on RKE2 (local clusters)
 
@@ -39,12 +39,19 @@ When migrating a Rancher local cluster, the Rancher Ingress resource requires sp
 
 ### Downstream RKE2 clusters (provisioned by Rancher)
 
-For RKE2 clusters provisioned and managed by SUSE Rancher Prime, migration options are integrated directly into the user interface.
+For RKE2 clusters provisioned and managed by Rancher, migration options are integrated directly into the user interface.
 
-Starting in SUSE Rancher Prime v2.14.0 (and targeted for v2.13.5), the cluster configuration interface provides a Dual Mode migration option. This allows you to safely test and migrate traffic from Ingress NGINX to Traefik directly from the cluster management screen.
+Starting in Rancher v2.14.0 (and targeted for v2.13.5), the cluster configuration interface provides a Dual Mode migration option. This allows you to safely test and migrate traffic from Ingress NGINX to Traefik directly from the cluster management page. For more information, refer to the [documenation](<add-docs-urls>).
 
 ### Rancher on managed Kubernetes (Amazon EKS, Azure AKS, Google GKE)
 
-If you run SUSE Rancher Prime on a managed Kubernetes service such as Amazon Elastic Kubernetes Service (EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE), the recommendation is to migrate to Traefik.
+If you run Rancher on a managed Kubernetes service such as Amazon Elastic Kubernetes Service (EKS), Azure Kubernetes Service (AKS), or Google Kubernetes Engine (GKE), the recommendation is to migrate to Traefik. Users should deploy and migrate to the upstream Traefik proxy distribution.
 
-SUSE Rancher Prime customers can leverage the Application Collection to deploy and manage the Traefik proxy. Community users should migrate to the upstream Traefik distribution.
+## Impact on other open source projects
+
+The retirement of Ingress NGINX impacts other related projects in the following ways:
+
+- Longhorn: There is no impact on the Longhorn backend. However, administrators must reconfigure their Ingress to upgrade the Longhorn UI. For more information, refer to [Create an Ingress with Basic Authentication (Traefik)](https://longhorn.io/docs/1.11.1/deploy/accessing-the-ui/longhorn-ingress-traefik/).
+- Fleet: Configuring a webhook service is affected. Refer to the [Fleet documentation](https://fleet.rancher.io/0.14/how-tos-for-users/webhook#_1_configure_the_webhook_service) for more informaiton.
+
+Ingress NGINX references in project documentation have been removed.
