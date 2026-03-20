@@ -6,6 +6,8 @@ title: Tokens
     <link rel="canonical" href="https://ranchermanager.docs.rancher.com/api/workflows/tokens"/>
 </head>
 
+<v3APITokentsDepecationWarning />
+
 ## Token Resource
 
 Rancher has an imperative API resource `tokens.ext.cattle.io` that allows you to generate tokens for authenticating with Rancher.

@@ -2,6 +2,8 @@
 title: API 密钥
 ---
 
+<v3APITokentsDepecationWarning />
+
 ## API 密钥和用户身份验证
 
 如果你想通过外部应用程序来访问 Rancher 集群、项目或其他对象，你可以使用 Rancher API。但是，在你的应用程序可以访问 API 之前，你必须为应用程序提供用于向 Rancher 进行身份验证的密钥。你可以通过 Rancher UI 获取密钥。
