@@ -2,7 +2,7 @@
 title: API 令牌
 ---
 
-<v3APITokentsDepecationWarning />
+<v3APITokensDeprecationWarning />
 
 默认情况下，某些集群级别的 API 令牌是使用无限期 TTL（`ttl=0`）生成的。换言之，除非你让令牌失效，否则 `ttl=0` 的 API 令牌永远不会过期。令牌不会因为更改密码而失效。
 

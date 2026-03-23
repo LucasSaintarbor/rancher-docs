@@ -38,5 +38,5 @@ export default {
   EOLRKE1Warning,
   PermissionsWarning,
   SamlOpenLDAPGroupPermissions,
-  v3APITokentsDepecationWarning,
+  v3APITokensDeprecationWarning,
 };

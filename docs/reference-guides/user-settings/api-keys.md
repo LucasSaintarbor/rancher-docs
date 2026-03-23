@@ -6,7 +6,7 @@ title: API Keys
   <link rel="canonical" href="https://ranchermanager.docs.rancher.com/reference-guides/user-settings/api-keys"/>
 </head>
 
-<v3APITokentsDepecationWarning />
+<v3APITokensDeprecationWarning />
 
 ## API Keys and User Authentication
 

@@ -2,7 +2,7 @@
 title: API 密钥
 ---
 
-<v3APITokentsDepecationWarning />
+<v3APITokensDeprecationWarning />
 
 ## API 密钥和用户身份验证
 

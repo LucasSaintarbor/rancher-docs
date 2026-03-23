@@ -6,7 +6,7 @@ title: Tokens
     <link rel="canonical" href="https://ranchermanager.docs.rancher.com/api/workflows/tokens"/>
 </head>
 
-<v3APITokentsDepecationWarning />
+<v3APITokensDeprecationWarning />
 
 ## Token Resource
 

@@ -6,7 +6,7 @@ title: Using API Tokens
   <link rel="canonical" href="https://ranchermanager.docs.rancher.com/api/api-tokens"/>
 </head>
 
-<v3APITokentsDepecationWarning />
+<v3APITokensDeprecationWarning />
 
 Rancher v2.8.0 introduced the [Rancher Kubernetes API](./api-reference.mdx) which can be used to manage Rancher resources through `kubectl`. This page covers information on API tokens used with the [Rancher CLI](../reference-guides/cli-with-rancher/cli-with-rancher.md), [kubeconfig files](../how-to-guides/new-user-guides/manage-clusters/access-clusters/authorized-cluster-endpoint.md#about-the-kubeconfig-file), Terraform and the [v3 API browser](./v3-rancher-api-guide.md#enable-view-in-api).
 
