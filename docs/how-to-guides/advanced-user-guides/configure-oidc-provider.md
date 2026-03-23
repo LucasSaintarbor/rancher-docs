@@ -8,7 +8,11 @@ title: Configure Rancher as an OIDC provider
 
 Rancher can act as an OpenID Connect (OIDC) Identity Provider (IdP) for other applications. This allows you to use Rancher's centralized authentication and role-based access control (RBAC) to manage access to external, third-party applications. This can be used for enabling single sign-on (SSO) across Rancher components. For example, see the [documentation](https://documentation.suse.com/cloudnative/suse-observability/latest/en/setup/security/authentication/oidc.html) for configuring the OIDC provider for SUSE Observability.
 
-The Rancher OIDC Provider issues access tokens for OAuth and OIDC that can be used as standard Bearer tokens (per RFC6750) to authenticate with Rancher. Previously, access tokens issued by the Rancher OIDC Server could not be used for Rancher authentication.
+:::note
+Because OIDC is a superset of OAuth2, you can use Rancher as an OAuth2 server without requiring full OIDC. This ensures that clients utilizing the OAuth2 aspect, such as the `rancher-ai-mcp` server, are fully supported.
+:::
+
+The Rancher OIDC Provider issues access tokens for OAuth2 and OIDC that can be used as standard Bearer tokens (per RFC6750) to authenticate with Rancher. Previously, only an ID token could be used to impersonate and authenticate a user.
 
 The OIDC provider can be enabled with the `oidc-provider` feature flag. When this flag is on the following endpoints are available:
 
