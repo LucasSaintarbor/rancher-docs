@@ -139,6 +139,10 @@ For example, if your IdP sends `groups` in a claim called `custom_roles`, enter 
 | Custom Email Claim | `email` | The name of the claim in the OIDC token that contains the user's email address. |
 | Custom Groups Claim | `groups` | The name of the claim in the OIDC token that contains the user's group memberships (used for RBAC). |
 
+## OIDC Support for PKCE Extension
+
+<OIDCPKCESupport />
+
 ## Configuring OIDC Single Logout (SLO)
 
 <ConfigureSLOOidc />

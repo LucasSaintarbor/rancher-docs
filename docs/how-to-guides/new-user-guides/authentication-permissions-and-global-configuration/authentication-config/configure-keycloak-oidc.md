@@ -168,6 +168,10 @@ After configuration is completed, Rancher user permissions need to be reapplied 
 
 :::
 
+## OIDC Support for PKCE Extension
+
+<OIDCPKCESupport />
+
 ## Configuring OIDC Single Logout (SLO)
 
 <ConfigureSLOOidc />

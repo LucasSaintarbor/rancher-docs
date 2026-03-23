@@ -1,14 +1,28 @@
 ---
-title: Notification Center
+title: Notifications
 ---
 
 <head>
   <link rel="canonical" href="https://ranchermanager.docs.rancher.com/how-to-guides/new-user-guides/authentication-permissions-and-global-configuration/notification-center"/>
 </head>
 
+The Rancher dashboard delivers dynamic notifications and system alerts to ensure that you stay informed about the latest updates, lifecycle events, and statuses relevant to your deployment.
+
+## Dynamic Content
+
+Rancher fetches dynamic content, including notifications about new releases, End of Maintenance (EOM) or End of Life (EOL) statuses, and other important announcements.
+
+Dynamic content is delivered to users through three areas in the Rancher dashboard. 
+
+* **Home page notification banner**: A dynamic banner displayed at the top of the home page for high-priority announcements.
+* **Home page section below the Links**: A dedicated area on the home page, located beneath the **Links** section, that displays relevant updates and resources.
+* **[Notification center](#what-is-the-notification-center)**: A centralized hub for all notifications, including system alerts, resources and announcements.
+
+To interact with these notifications, click **Learn More** on the listed resource. You can also dismiss the notification.
+
 ## What is the Notification Center?
 
-The Notification Center, located in the upper-right corner of your Rancher dashboard and marked by a bell icon, is your central hub for staying informed about various events within Rancher.
+The notification center acts as a central repository for both system-generated alerts and dynamic announcements. You can access it by clicking the bell icon in the top right corner of the Rancher dashboard.
 
 Notifications are categorized by severity and type:
 

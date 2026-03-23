@@ -17,6 +17,8 @@ import EOLRKE1Warning from '/shared-files/_eol-rke1-warning.md';
 import PermissionsWarning from '/shared-files/_permissions-warning.md';
 import SamlOpenLDAPGroupPermissions from '/shared-files/_saml-openldap-group-permissions.md';
 import v3APITokensDeprecationWarning from '/shared-files/_v3-api-tokens-deprecation-warning.md';
+import OIDCPKCESupport from '/shared-files/_oidc-pkce-support.md';
+
 
 export default {
   // Re-use the default mapping
@@ -39,4 +41,5 @@ export default {
   PermissionsWarning,
   SamlOpenLDAPGroupPermissions,
   v3APITokensDeprecationWarning,
+  OIDCPKCESupport,
 };
