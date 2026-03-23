@@ -1,4 +1,4 @@
-:::warning[Deprecation of v3 API tokens]
+:::warning Deprecation of v3 API tokens
 Rancher v2.13 introduced a new token resource in the `ext.cattle.io` API group to serve as the public API for tokens and was only accessible through `kubectl`.
 
 Starting with Rancher v2.14.0:
