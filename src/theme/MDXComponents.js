@@ -16,7 +16,7 @@ import ConfigureSLOOidc from '/shared-files/_configure-slo-oidc.md';
 import EOLRKE1Warning from '/shared-files/_eol-rke1-warning.md';
 import PermissionsWarning from '/shared-files/_permissions-warning.md';
 import SamlOpenLDAPGroupPermissions from '/shared-files/_saml-openldap-group-permissions.md';
-import v3APITokentsDepecationWarning from '/shared-files/_v3-api-tokens-deprecation-warning.md';
+import v3APITokensDeprecationWarning from '/shared-files/_v3-api-tokens-deprecation-warning.md';
 
 export default {
   // Re-use the default mapping
