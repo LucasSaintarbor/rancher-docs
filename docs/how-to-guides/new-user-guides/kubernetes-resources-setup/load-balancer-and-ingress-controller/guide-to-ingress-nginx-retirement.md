@@ -6,7 +6,7 @@ title: Guide to Ingress NGINX Retirement
   <link rel="canonical" href="https://ranchermanager.docs.rancher.com/how-to-guides/new-user-guides/kubernetes-resources-setup/load-balancer-and-ingress-controller/guide-to-ingress-nginx-retirement"/>
 </head>
 
-The Kubernetes SIG Network and the Security Response Committee announced the [retirement of the Ingress NGINX project](https://kubernetes.io/blog/2025/11/11/ingress-nginx-retirement/). Upstream best-effort maintenance will continue until March 2026. After this date, there will be no further upstream releases, bug fixes, or security updates.
+The Kubernetes SIG Network and the Security Response Committee announced the [retirement of the Ingress NGINX project](https://kubernetes.io/blog/2025/11/11/ingress-nginx-retirement/). Upstream best-effort maintenance, and all associated upstream releases, bug fixes, or security updates, ended March 2026.
 
 To support users during this transition, Rancher provides clear migration paths to Traefik. This guide centralizes the information on how to proceed based on your specific deployment scenario.
 
@@ -15,7 +15,7 @@ To support users during this transition, Rancher provides clear migration paths 
 Rancher and RKE2 life cycles align with the upstream retirement schedule.
 
 :::warning
-After March 2026, upstream Ingress NGINX images will no longer receive updates. Any images built with patches after this date are restricted to commercial customers. Users must migrate to Traefik or another supported Ingress controller before this deadline to ensure continued security and compatibility.
+After March 2026, upstream Ingress NGINX images no longer receive updates. Any images built with patches after this date are restricted to commercial customers. Users must migrate to Traefik or another supported Ingress controller before this deadline to ensure continued security and compatibility.
 :::
 
 ## Migration paths by environment
@@ -58,5 +58,5 @@ Users should deploy and migrate to the upstream Traefik proxy distribution.
 The retirement of Ingress NGINX impacts other related projects in the following ways:
 
 - Longhorn: There is no impact on the Longhorn backend. However, administrators must reconfigure their Ingress to upgrade the Longhorn UI. For more information, refer to [Create an Ingress with Basic Authentication (Traefik)](https://longhorn.io/docs/1.11.1/deploy/accessing-the-ui/longhorn-ingress-traefik/).
-- Fleet: Configuring a webhook service is affected. Refer to the [Fleet documentation](https://fleet.rancher.io/0.14/how-tos-for-users/webhook#_1_configure_the_webhook_service) for more information.
+- Fleet: Configuring a webhook service is affected. Refer to the [Fleet documentation](https://fleet.rancher.io/0.15/how-tos-for-users/webhook#_1_configure_the_webhook_service) for more information.
 - Ingress NGINX references in documentation for other projects have been removed.
