@@ -12,10 +12,6 @@ Therefore, even if RKE template enforcement is turned on, the end user still has
 
 If you want to standardize the hardware in your clusters, use RKE templates conjunction with node templates or with a server provisioning tool such as Terraform.
 
-### Node Templates
-
-[Node templates](../../../../reference-guides/user-settings/manage-node-templates.md) are responsible for node configuration and node provisioning in Rancher. From your user profile, you can set up node templates to define which templates are used in each of your node pools. With node pools enabled, you can make sure you have the required number of nodes in each node pool, and ensure that all nodes in the pool are the same.
-
 ### Terraform
 
 Terraform is a server provisioning tool. It uses infrastructure-as-code that lets you create almost every aspect of your infrastructure with Terraform configuration files. It can automate the process of server provisioning in a way that is self-documenting and easy to track in version control.
