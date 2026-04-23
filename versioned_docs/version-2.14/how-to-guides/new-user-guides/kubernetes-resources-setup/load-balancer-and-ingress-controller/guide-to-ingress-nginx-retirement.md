@@ -41,8 +41,6 @@ When migrating a Rancher local cluster, the Rancher Ingress resource requires sp
 
 For RKE2 clusters provisioned and managed by Rancher, migration options are integrated directly into the user interface.
 
-<!-- Update note after v2.13.5 release -->
-
 :::note
 This migration option is only possible in Rancher v2.14.0+.
 :::
