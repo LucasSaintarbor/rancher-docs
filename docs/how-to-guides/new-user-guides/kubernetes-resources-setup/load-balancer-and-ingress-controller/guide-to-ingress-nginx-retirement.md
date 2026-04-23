@@ -41,8 +41,10 @@ When migrating a Rancher local cluster, the Rancher Ingress resource requires sp
 
 For RKE2 clusters provisioned and managed by Rancher, migration options are integrated directly into the user interface.
 
+<!-- Update note after v2.13.5 release -->
+
 :::note
-This migration option is only possible in Rancher v2.13.5+ and v2.14.0+.
+This migration option is only possible in Rancher v2.14.0+.
 :::
 
 The cluster configuration interface provides a Dual Mode migration option. This allows you to safely test and migrate traffic from Ingress NGINX to Traefik directly from the cluster management page. For more information, refer to the documentation.
